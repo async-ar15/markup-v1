@@ -10,12 +10,12 @@
   <script type="module">
     import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs';
     mermaid.initialize({ startOnLoad: true, theme: 'base', themeVariables: {
-      primaryColor: '#ffffff',
-      primaryTextColor: '#1a2636',
+      primaryColor: '#1a2636',
+      primaryTextColor: '#ffffff',
       primaryBorderColor: '#b5631a',
       lineColor: '#b5631a',
-      secondaryColor: '#f6f2ea',
-      tertiaryColor: '#f6f2ea'
+      secondaryColor: '#0e1b2c',
+      tertiaryColor: '#0e1b2c'
     } });
   </script>
   <style>
@@ -197,12 +197,12 @@
       <div class="mermaid">
         flowchart TD
             A[Claude / Agent]
-            subgraph markup (Local MCP Server)
+            subgraph markup ["Local MCP Server"]
                 M[stdio transport]
                 H[HTTP Server :13847]
                 W[WebSocket]
             end
-            subgraph Browser
+            subgraph Browser ["Browser"]
                 V[Viewer UI]
                 I[Artifact iframe]
                 C[html2canvas-pro]
