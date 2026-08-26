@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>markup - API Reference</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Fira+Code:wght@400;500;600&family=Plus+Jakarta+Sans:ital,wght@0,400..700;1,400..700&display=swap" rel="stylesheet">
+  <script type="module">
+    import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs';
+    mermaid.initialize({ startOnLoad: true, theme: 'base', themeVariables: {
+      primaryColor: '#ffffff',
+      primaryTextColor: '#1a2636',
+      primaryBorderColor: '#b5631a',
+      lineColor: '#b5631a',
+      secondaryColor: '#f6f2ea',
+      tertiaryColor: '#f6f2ea'
+    } });
+  </script>
+  <style>
+    :root {
+      --bg: #f6f2ea;
+      --surface: #ffffff;
+      --text: #1a2636;
+      --text-dim: #6a7689;
+      --border: rgba(26, 38, 54, 0.12);
+      --accent: #b5631a;
+      --accent-bright: #9c5213;
+      
+      --font-display: 'DM Serif Display', Georgia, serif;
+      --font-body: 'Plus Jakarta Sans', system-ui, sans-serif;
+      --font-mono: 'Fira Code', Consolas, monospace;
+    }
+
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --bg: #0e1b2c;
+        --surface: #142236;
+        --text: #f6f2ea;
+        --text-dim: #93a0b3;
+        --border: rgba(246, 242, 234, 0.12);
+        --accent: #e08040;
+        --accent-bright: #f29c66;
+      }
+    }
+
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+    
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: var(--font-body);
+      line-height: 1.6;
+      padding-top: 80px;
+    }
+
+    .nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      height: 60px;
+      background: color-mix(in srgb, var(--surface) 80%, transparent);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      padding: 0 32px;
+      z-index: 100;
+    }
+
+    .nav__brand {
+      font-family: var(--font-mono);
+      font-weight: 600;
+      color: var(--accent);
+      text-decoration: none;
+      font-size: 16px;
+      margin-right: auto;
+    }
+
+    .nav__links {
+      display: flex;
+      gap: 24px;
+    }
+
+    .nav__link {
+      font-family: var(--font-mono);
+      font-size: 13px;
+      color: var(--text-dim);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+
+    .nav__link:hover, .nav__link.active {
+      color: var(--text);
+    }
+
+    .container {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 40px 24px 80px;
+    }
+
+    h1, h2, h3, h4 { font-family: var(--font-display); font-weight: normal; }
+    
+    .hero { margin-bottom: 60px; border-bottom: 1px solid var(--border); padding-bottom: 40px; }
+    .hero h1 { font-size: 56px; line-height: 1.1; }
+
+    .section { margin-bottom: 80px; }
+    .section h2 { font-size: 32px; margin-bottom: 24px; border-bottom: 1px solid var(--border); padding-bottom: 8px; }
+    .section h3 { font-size: 24px; margin-top: 32px; margin-bottom: 16px; color: var(--accent); }
+    
+    .prop-list { margin-bottom: 24px; }
+    .prop-item { display: flex; gap: 16px; padding: 12px 0; border-bottom: 1px solid var(--border); }
+    .prop-name { font-family: var(--font-mono); font-weight: 600; min-width: 120px; }
+    .prop-type { font-family: var(--font-mono); color: var(--accent); font-size: 12px; }
+    .prop-desc { color: var(--text-dim); }
+
+    pre {
+      background: #1a2636;
+      color: #e4e4e4;
+      padding: 16px;
+      border-radius: 8px;
+      font-family: var(--font-mono);
+      font-size: 14px;
+      overflow-x: auto;
+      margin-bottom: 24px;
+    }
+    
+    .mermaid {
+      background: var(--surface);
+      padding: 24px;
+      border-radius: 8px;
+      border: 1px solid var(--border);
+      text-align: center;
+      margin-bottom: 24px;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-bottom: 24px;
+    }
+    th, td {
+      text-align: left;
+      padding: 12px;
+      border-bottom: 1px solid var(--border);
+    }
+    th { font-family: var(--font-mono); font-weight: 600; color: var(--text); }
+    td { color: var(--text-dim); }
+    td code { font-family: var(--font-mono); color: var(--accent); background: var(--surface); padding: 2px 4px; border-radius: 4px; }
+
+    .footer {
+      border-top: 1px solid var(--border);
+      padding-top: 32px;
+      display: flex;
+      justify-content: space-between;
+      font-family: var(--font-mono);
+      font-size: 14px;
+    }
+    .footer a { color: var(--accent); text-decoration: none; }
+    .footer a:hover { text-decoration: underline; }
+  </style>
+</head>
+<body>
+
+  <nav class="nav">
+    <a href="index.html" class="nav__brand">markup</a>
+    <div class="nav__links">
+      <a href="index.html" class="nav__link">Overview</a>
+      <a href="api.html" class="nav__link active">API</a>
+      <a href="guide.html" class="nav__link">Guide</a>
+    </div>
+  </nav>
+
+  <div class="container">
+    <div class="hero">
+      <h1>API Reference</h1>
+    </div>
+
+    <div class="section" id="mcp">
+      <h2>MCP Tool</h2>
+      <h3>render_and_collect_feedback</h3>
+      <p>Renders the supplied HTML in the viewer and blocks until the user submits annotated feedback.</p>
+      
+      <div class="prop-list">
+        <div class="prop-item">
+          <div class="prop-name">html</div>
+          <div>
+            <div class="prop-type">string (required)</div>
+            <div class="prop-desc">The full HTML document to render in the viewer. Must be self-contained (inline CSS/JS or CDN assets).</div>
+          </div>
+        </div>
+        <div class="prop-item">
+          <div class="prop-name">title</div>
+          <div>
+            <div class="prop-type">string (optional)</div>
+            <div class="prop-desc">Short title for the artifact shown in the viewer's top bar.</div>
+          </div>
+        </div>
+      </div>
+      <p><strong>Returns:</strong> Image content blocks (one per scrolled region) plus structured text describing the buckets.</p>
+    </div>
+
+    <div class="section" id="http">
+      <h2>HTTP Endpoints</h2>
+      
+      <h3>GET /</h3>
+      <p>Serves the viewer UI (index.html).</p>
+
+      <h3>GET /artifacts/:id</h3>
+      <p>Serves the raw HTML artifact by ID. This ensures the iframe is same-origin for html2canvas.</p>
+
+      <h3>POST /submit</h3>
+      <p>Receives the bundled feedback from the viewer.</p>
+      <pre>POST /submit
+Content-Type: application/json
+
+{
+  "artifactId": "uuid",
+  "buckets": [...]
+}</pre>
+
+      <h3>GET /health</h3>
+      <p>Returns 200 OK if the server is running.</p>
+
+      <h3>POST /debug-log</h3>
+      <p>Accepts client-side errors and logs them to the server stderr.</p>
+    </div>
+
+    <div class="section" id="ws">
+      <h2>WebSocket Protocol</h2>
+      <p>Clients connect to <code>ws://localhost:13847/ws</code>. The server pushes artifact updates to all connected viewers.</p>
+      <div class="prop-list">
+        <div class="prop-item">
+          <div class="prop-name">artifact</div>
+          <div>
+            <div class="prop-type">JSON Message</div>
+            <div class="prop-desc"><code>{ "type": "artifact", "id": "uuid", "title": "Optional Title" }</code></div>
+          </div>
+        </div>
+      </div>
+      <p>The viewer automatically reconnects using exponential backoff if the connection is lost.</p>
+    </div>
+
+    <div class="section" id="state-machine">
+      <h2>State Machine</h2>
+      <div class="mermaid">
+        stateDiagram-v2
+            [*] --> Idle
+            Idle --> Pending : render_and_collect_feedback called
+            Pending --> Resolved : User submits feedback
+            Pending --> Rejected : Server shutdown
+            Resolved --> Idle
+            Rejected --> Idle
+      </div>
+    </div>
+
+    <div class="section" id="payload">
+      <h2>Submission Payload</h2>
+      <pre><code>interface FeedbackPayload {
+  artifactId: string;
+  buckets: Bucket[];
+}
+
+interface Bucket {
+  // Pixel range [start, end] of the scrolled document
+  range: [number, number];
+  
+  // All comments that fell into this region
+  comments: Comment[];
+  
+  // Base64 encoded PNG of the rendered HTML in this region
+  dataUrl: string;
+}
+
+interface Comment {
+  id: string;
+  text: string;
+  scrollY: number;
+  viewportH: number;
+  timestamp: number;
+}</code></pre>
+    </div>
+
+    <div class="section" id="errors">
+      <h2>Error Codes</h2>
+      <table>
+        <thead>
+          <tr>
+            <th>Code</th>
+            <th>Cause</th>
+            <th>Resolution</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><code>PORTAL_BUSY</code></td>
+            <td>Another MCP call is already pending feedback.</td>
+            <td>Wait for the user to submit or cancel the previous request.</td>
+          </tr>
+          <tr>
+            <td><code>PORTAL_SHUTDOWN</code></td>
+            <td>The server received SIGINT/SIGTERM while waiting.</td>
+            <td>Restart the server and try again.</td>
+          </tr>
+          <tr>
+            <td><code>PAYLOAD_TOO_LARGE</code></td>
+            <td>The submitted screenshots exceeded JSON limits.</td>
+            <td>Increase max body size or submit fewer regions at once.</td>
+          </tr>
+          <tr>
+            <td><code>CONFLICT</code></td>
+            <td>Submitted feedback for an artifact that is no longer pending.</td>
+            <td>None. The previous submission was already processed.</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="footer">
+      <a href="index.html">← Overview</a>
+      <a href="guide.html">Setup Guide →</a>
+    </div>
+  </div>
+</body>
+</html>

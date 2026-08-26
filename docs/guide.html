@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>markup - Setup Guide</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Fira+Code:wght@400;500;600&family=Plus+Jakarta+Sans:ital,wght@0,400..700;1,400..700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #f6f2ea;
+      --surface: #ffffff;
+      --text: #1a2636;
+      --text-dim: #6a7689;
+      --border: rgba(26, 38, 54, 0.12);
+      --accent: #b5631a;
+      --accent-bright: #9c5213;
+      --callout-bg: rgba(181, 99, 26, 0.05);
+      --error-bg: rgba(168, 50, 74, 0.05);
+      --error-text: #a8324a;
+      
+      --font-display: 'DM Serif Display', Georgia, serif;
+      --font-body: 'Plus Jakarta Sans', system-ui, sans-serif;
+      --font-mono: 'Fira Code', Consolas, monospace;
+    }
+
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --bg: #0e1b2c;
+        --surface: #142236;
+        --text: #f6f2ea;
+        --text-dim: #93a0b3;
+        --border: rgba(246, 242, 234, 0.12);
+        --accent: #e08040;
+        --accent-bright: #f29c66;
+        --callout-bg: rgba(224, 128, 64, 0.1);
+        --error-bg: rgba(217, 99, 132, 0.1);
+        --error-text: #d96384;
+      }
+    }
+
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+    
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: var(--font-body);
+      line-height: 1.6;
+      padding-top: 80px;
+    }
+
+    .nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      height: 60px;
+      background: color-mix(in srgb, var(--surface) 80%, transparent);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      padding: 0 32px;
+      z-index: 100;
+    }
+
+    .nav__brand {
+      font-family: var(--font-mono);
+      font-weight: 600;
+      color: var(--accent);
+      text-decoration: none;
+      font-size: 16px;
+      margin-right: auto;
+    }
+
+    .nav__links {
+      display: flex;
+      gap: 24px;
+    }
+
+    .nav__link {
+      font-family: var(--font-mono);
+      font-size: 13px;
+      color: var(--text-dim);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+
+    .nav__link:hover, .nav__link.active {
+      color: var(--text);
+    }
+
+    .container {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 40px 24px 80px;
+    }
+
+    h1, h2, h3, h4 { font-family: var(--font-display); font-weight: normal; }
+    
+    .hero { margin-bottom: 60px; border-bottom: 1px solid var(--border); padding-bottom: 40px; }
+    .hero h1 { font-size: 56px; line-height: 1.1; }
+
+    .section { margin-bottom: 80px; }
+    .section h2 { font-size: 32px; margin-bottom: 24px; border-bottom: 1px solid var(--border); padding-bottom: 8px; }
+    .section h3 { font-size: 24px; margin-top: 32px; margin-bottom: 16px; color: var(--accent); }
+    
+    pre {
+      background: #1a2636;
+      color: #e4e4e4;
+      padding: 16px;
+      border-radius: 8px;
+      font-family: var(--font-mono);
+      font-size: 14px;
+      overflow-x: auto;
+      margin-bottom: 24px;
+    }
+    
+    .callout {
+      background: var(--callout-bg);
+      border-left: 4px solid var(--accent);
+      padding: 16px 24px;
+      border-radius: 0 8px 8px 0;
+      margin-bottom: 24px;
+    }
+    .callout h4 { font-family: var(--font-body); font-weight: 600; margin-bottom: 8px; font-size: 16px; }
+    
+    .error-box {
+      background: var(--error-bg);
+      border: 1px solid var(--error-text);
+      padding: 16px 24px;
+      border-radius: 8px;
+      margin-bottom: 16px;
+    }
+    .error-box h4 { font-family: var(--font-body); font-weight: 600; margin-bottom: 8px; font-size: 16px; color: var(--error-text); }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-bottom: 24px;
+    }
+    th, td {
+      text-align: left;
+      padding: 12px;
+      border-bottom: 1px solid var(--border);
+    }
+    th { font-family: var(--font-mono); font-weight: 600; color: var(--text); }
+    td { color: var(--text-dim); }
+    td code { font-family: var(--font-mono); color: var(--accent); background: var(--surface); padding: 2px 4px; border-radius: 4px; }
+
+    .footer {
+      border-top: 1px solid var(--border);
+      padding-top: 32px;
+      display: flex;
+      justify-content: space-between;
+      font-family: var(--font-mono);
+      font-size: 14px;
+    }
+    .footer a { color: var(--accent); text-decoration: none; }
+    .footer a:hover { text-decoration: underline; }
+  </style>
+</head>
+<body>
+
+  <nav class="nav">
+    <a href="index.html" class="nav__brand">markup</a>
+    <div class="nav__links">
+      <a href="index.html" class="nav__link">Overview</a>
+      <a href="api.html" class="nav__link">API</a>
+      <a href="guide.html" class="nav__link active">Guide</a>
+    </div>
+  </nav>
+
+  <div class="container">
+    <div class="hero">
+      <h1>Setup Guide</h1>
+    </div>
+
+    <div class="section" id="reqs">
+      <h2>Requirements</h2>
+      <ul>
+        <li><strong>Node.js 20+</strong></li>
+        <li><strong>Claude Code</strong> (or any MCP-compatible agent)</li>
+        <li><strong>bash</strong> (for running the install script)</li>
+      </ul>
+    </div>
+
+    <div class="section" id="install">
+      <h2>Installation</h2>
+      
+      <div class="callout">
+        <h4>Option A: Global Install (Recommended)</h4>
+        <p>Installs the tool at the user level so you can use it in any directory.</p>
+        <pre>git clone https://github.com/async-ar15/markup.git
+cd markup
+bash scripts/install.sh</pre>
+      </div>
+
+      <div class="callout">
+        <h4>Option B: Per-Project Install</h4>
+        <p>If you don't want a global install, you can add markup to your project's <code>.mcp.json</code> or <code>claude.json</code> manually.</p>
+        <pre>{
+  "mcpServers": {
+    "markup": {
+      "command": "npx",
+      "args": ["-y", "tsx", "/absolute/path/to/markup/src/index.ts"]
+    }
+  }
+}</pre>
+      </div>
+    </div>
+
+    <div class="section" id="config">
+      <h2>Configuration</h2>
+      <p>Zero config required by default.</p>
+      <table>
+        <thead>
+          <tr>
+            <th>Environment Variable</th>
+            <th>Default</th>
+            <th>Effect</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><code>MARKUP_PORT</code></td>
+            <td><code>13847</code></td>
+            <td>Sets the base port. If occupied, markup will try up to +5 ports automatically.</td>
+          </tr>
+          <tr>
+            <td><code>PORT</code></td>
+            <td>none</td>
+            <td>Fallback if MARKUP_PORT is not set.</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="section" id="storage">
+      <h2>Storage</h2>
+      <p>All data is stored locally in your home directory at <code>~/.markup/</code></p>
+      <ul>
+        <li><code>~/.markup/artifacts/</code>: The raw HTML files generated by the agent.</li>
+        <li><code>~/.markup/feedback-&lt;timestamp&gt;/</code>: The screenshots generated during a session.</li>
+      </ul>
+    </div>
+
+    <div class="section" id="troubleshooting">
+      <h2>Troubleshooting</h2>
+      
+      <div class="error-box">
+        <h4>MCP tool not found</h4>
+        <p>Ensure you restarted your agent (e.g. type <code>/mcp</code> in Claude Code or restart the CLI) after running the install script.</p>
+      </div>
+
+      <div class="error-box">
+        <h4>Nothing renders / blank screen</h4>
+        <p>Ensure your agent is generating valid, self-contained HTML. External stylesheets may fail to load if they don't support CORS.</p>
+      </div>
+
+      <div class="error-box">
+        <h4>1x1 Placeholder Image</h4>
+        <p>If a CSS feature crashes html2canvas, markup falls back to a 1x1 transparent PNG to ensure the comments are still delivered. Check the browser console for rendering errors.</p>
+      </div>
+
+      <div class="error-box">
+        <h4>PORTAL_BUSY error</h4>
+        <p>You have a pending artifact waiting for feedback. Submit or dismiss it in the browser before asking the agent to render another one.</p>
+      </div>
+    </div>
+
+    <div class="section" id="comparison">
+      <h2>Comparison</h2>
+      <table>
+        <thead>
+          <tr>
+            <th>Feature</th>
+            <th>markup</th>
+            <th>Anthropic Artifacts</th>
+            <th>Claude Code Playground</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Local-first</td>
+            <td>✅ Yes</td>
+            <td>❌ No (Cloud)</td>
+            <td>✅ Yes</td>
+          </tr>
+          <tr>
+            <td>Visual Feedback Loop</td>
+            <td>✅ Yes (Screenshots)</td>
+            <td>❌ No</td>
+            <td>❌ No</td>
+          </tr>
+          <tr>
+            <td>Custom Domain/Port</td>
+            <td>✅ Configurable</td>
+            <td>❌ N/A</td>
+            <td>❌ Hardcoded</td>
+          </tr>
+          <tr>
+            <td>Works in CLI</td>
+            <td>✅ Yes</td>
+            <td>❌ Web only</td>
+            <td>✅ Yes</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="section" id="dev">
+      <h2>Development Commands</h2>
+      <pre># Start the server locally
+npm run dev
+
+# Run the test suite
+npm test
+
+# Run an interactive end-to-end demo
+node tests/demo.mjs
+
+# Typecheck without emitting files
+npx tsc --noEmit</pre>
+    </div>
+
+    <div class="footer">
+      <a href="api.html">← API Reference</a>
+      <a href="index.html">Overview →</a>
+    </div>
+  </div>
+</body>
+</html>
