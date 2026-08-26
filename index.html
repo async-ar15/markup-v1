@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>markup - Overview</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Fira+Code:wght@400;500;600&family=Plus+Jakarta+Sans:ital,wght@0,400..700;1,400..700&display=swap" rel="stylesheet">
+  <script type="module">
+    import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs';
+    mermaid.initialize({ startOnLoad: true, theme: 'base', themeVariables: {
+      primaryColor: '#ffffff',
+      primaryTextColor: '#1a2636',
+      primaryBorderColor: '#b5631a',
+      lineColor: '#b5631a',
+      secondaryColor: '#f6f2ea',
+      tertiaryColor: '#f6f2ea'
+    } });
+  </script>
+  <style>
+    :root {
+      --bg: #f6f2ea;
+      --surface: #ffffff;
+      --text: #1a2636;
+      --text-dim: #6a7689;
+      --border: rgba(26, 38, 54, 0.12);
+      --accent: #b5631a;
+      --accent-bright: #9c5213;
+      
+      --font-display: 'DM Serif Display', Georgia, serif;
+      --font-body: 'Plus Jakarta Sans', system-ui, sans-serif;
+      --font-mono: 'Fira Code', Consolas, monospace;
+    }
+
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --bg: #0e1b2c;
+        --surface: #142236;
+        --text: #f6f2ea;
+        --text-dim: #93a0b3;
+        --border: rgba(246, 242, 234, 0.12);
+        --accent: #e08040;
+        --accent-bright: #f29c66;
+      }
+    }
+
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+    
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: var(--font-body);
+      line-height: 1.6;
+      padding-top: 80px;
+    }
+
+    .nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      height: 60px;
+      background: color-mix(in srgb, var(--surface) 80%, transparent);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      padding: 0 32px;
+      z-index: 100;
+    }
+
+    .nav__brand {
+      font-family: var(--font-mono);
+      font-weight: 600;
+      color: var(--accent);
+      text-decoration: none;
+      font-size: 16px;
+      margin-right: auto;
+    }
+
+    .nav__links {
+      display: flex;
+      gap: 24px;
+    }
+
+    .nav__link {
+      font-family: var(--font-mono);
+      font-size: 13px;
+      color: var(--text-dim);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+
+    .nav__link:hover, .nav__link.active {
+      color: var(--text);
+    }
+
+    .container {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 40px 24px 80px;
+    }
+
+    h1, h2, h3 { font-family: var(--font-display); font-weight: normal; }
+    
+    .hero { margin-bottom: 60px; text-align: center; }
+    .hero h1 { font-size: 56px; margin-bottom: 16px; line-height: 1.1; }
+    .hero h1 em { font-style: italic; color: var(--accent); }
+    .hero p { font-size: 20px; color: var(--text-dim); max-width: 600px; margin: 0 auto; }
+    .badge { 
+      display: inline-block; 
+      font-family: var(--font-mono); 
+      font-size: 12px; 
+      background: var(--accent); 
+      color: var(--surface); 
+      padding: 4px 8px; 
+      border-radius: 4px; 
+      margin-bottom: 16px; 
+    }
+
+    .section { margin-bottom: 80px; }
+    .section h2 { font-size: 32px; margin-bottom: 24px; border-bottom: 1px solid var(--border); padding-bottom: 8px; }
+    
+    .grid { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
+    .card { background: var(--surface); border: 1px solid var(--border); padding: 24px; border-radius: 8px; }
+    .card h3 { font-size: 24px; margin-bottom: 12px; color: var(--accent); }
+    .card p { color: var(--text-dim); }
+
+    .step-flow { display: flex; flex-direction: column; gap: 24px; margin-top: 32px; }
+    .step { display: flex; gap: 24px; align-items: flex-start; }
+    .step-num { 
+      width: 32px; height: 32px; 
+      border-radius: 50%; 
+      background: var(--accent); 
+      color: var(--surface); 
+      display: flex; align-items: center; justify-content: center; 
+      font-family: var(--font-mono); flex-shrink: 0;
+    }
+    .step-content h3 { font-size: 20px; margin-bottom: 8px; }
+    
+    pre {
+      background: #1a2636;
+      color: #e4e4e4;
+      padding: 16px;
+      border-radius: 8px;
+      font-family: var(--font-mono);
+      font-size: 14px;
+      overflow-x: auto;
+      margin-bottom: 16px;
+    }
+    
+    .mermaid {
+      background: var(--surface);
+      padding: 24px;
+      border-radius: 8px;
+      border: 1px solid var(--border);
+      text-align: center;
+    }
+
+    .footer {
+      border-top: 1px solid var(--border);
+      padding-top: 32px;
+      display: flex;
+      justify-content: space-between;
+      font-family: var(--font-mono);
+      font-size: 14px;
+    }
+    .footer a { color: var(--accent); text-decoration: none; }
+    .footer a:hover { text-decoration: underline; }
+  </style>
+</head>
+<body>
+
+  <nav class="nav">
+    <a href="index.html" class="nav__brand">markup</a>
+    <div class="nav__links">
+      <a href="index.html" class="nav__link active">Overview</a>
+      <a href="api.html" class="nav__link">API</a>
+      <a href="guide.html" class="nav__link">Guide</a>
+    </div>
+  </nav>
+
+  <div class="container">
+    <div class="hero">
+      <div class="badge">v0.1.0</div>
+      <h1>Visual feedback for <em>agentic</em> coding.</h1>
+      <p>A local-first MCP server and browser viewer that overlays a universal annotation system onto any agent-generated HTML.</p>
+    </div>
+
+    <div class="section" id="overview">
+      <h2>Overview</h2>
+      <p>Describing CSS bugs to an LLM is a frustrating game of telephone. <strong>markup</strong> solves the "visual feedback loop". Instead of writing prompts about pixels, you just look at the artifact, click, and type comments. `markup` anchors your comments to the UI and routes pixel-perfect screenshots of those specific regions back to the agent via the Model Context Protocol (MCP).</p>
+    </div>
+
+    <div class="section" id="architecture">
+      <h2>Architecture</h2>
+      <div class="mermaid">
+        flowchart TD
+            A[Claude / Agent]
+            subgraph markup (Local MCP Server)
+                M[stdio transport]
+                H[HTTP Server :13847]
+                W[WebSocket]
+            end
+            subgraph Browser
+                V[Viewer UI]
+                I[Artifact iframe]
+                C[html2canvas-pro]
+            end
+            A -- tools/call --> M
+            M -- broadcast --> W
+            W -- id --> V
+            V -- GET HTML --> H
+            H -- HTML --> I
+            V -- Cmd+Enter --> C
+            C -- Base64 PNGs --> V
+            V -- POST /submit --> H
+            H -- Images + Text --> M
+            M -- tool response --> A
+      </div>
+    </div>
+
+    <div class="section" id="features">
+      <h2>Key Features</h2>
+      <div class="grid">
+        <div class="card">
+          <h3>Universal Overlay</h3>
+          <p>Works on ANY HTML artifact without requiring you to bake feedback widgets or "copy prompt" buttons into your code.</p>
+        </div>
+        <div class="card">
+          <h3>Scroll Clustering</h3>
+          <p>Automatically groups your comments based on what was visible in the viewport when you typed them.</p>
+        </div>
+        <div class="card">
+          <h3>Auto-Screenshots</h3>
+          <p>Captures pixel-perfect screenshots of the clustered regions using a modern fork of html2canvas (color-mix supported).</p>
+        </div>
+        <div class="card">
+          <h3>Indefinite Long-poll</h3>
+          <p>The MCP tool blocks indefinitely until you hit Cmd+Enter in the UI, keeping the agent paused until you're ready.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="section" id="quickstart">
+      <h2>Quick Start</h2>
+      <div class="step-flow">
+        <div class="step">
+          <div class="step-num">1</div>
+          <div class="step-content">
+            <h3>Install Globally</h3>
+            <pre>git clone https://github.com/async-ar15/markup.git
+cd markup
+bash scripts/install.sh</pre>
+            <p style="color: var(--text-dim)">This installs dependencies and registers the server in your global claude.json.</p>
+          </div>
+        </div>
+        <div class="step">
+          <div class="step-num">2</div>
+          <div class="step-content">
+            <h3>Restart Agent</h3>
+            <p>Restart Claude Code or your agent to load the new MCP tool.</p>
+          </div>
+        </div>
+        <div class="step">
+          <div class="step-num">3</div>
+          <div class="step-content">
+            <h3>Prompt the Agent</h3>
+            <p>Ask the agent: <em>"Build a dashboard and use the render_and_collect_feedback tool to show it to me."</em></p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="footer">
+      <div>markup by Aman Rajput</div>
+      <div style="display: flex; gap: 24px;">
+        <a href="api.html">API Reference →</a>
+        <a href="guide.html">Setup Guide →</a>
+      </div>
+    </div>
+  </div>
+</body>
+</html>
